@@ -1,5 +1,6 @@
 package br.com.adrianorodrigues.stockstransactions.external.repository.dto;
 
+import br.com.adrianorodrigues.stockstransactions.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,9 @@ public class TransactionDto {
     private BigDecimal amount;
     @Column(nullable = false)
     private BigDecimal price;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TransactionType type;
     @Column(nullable = false)
     private Integer sequence;
     @Column(nullable = false)

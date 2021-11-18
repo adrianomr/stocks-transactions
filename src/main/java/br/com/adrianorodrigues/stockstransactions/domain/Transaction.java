@@ -1,5 +1,6 @@
 package br.com.adrianorodrigues.stockstransactions.domain;
 
+import br.com.adrianorodrigues.stockstransactions.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +21,12 @@ public class Transaction {
     private String ticker;
     private BigDecimal amount;
     private BigDecimal price;
+    private TransactionType type;
     private Integer sequence;
     private Long userId;
 
     public String generateKey() {
-        return ticker + date + price.setScale(2, RoundingMode.CEILING) + amount.setScale(2, RoundingMode.CEILING);
+        return type + ticker + date + price.setScale(2, RoundingMode.CEILING) + amount.setScale(2, RoundingMode.CEILING);
     }
 
     public boolean equalsIgnoringId(Transaction transaction) {
