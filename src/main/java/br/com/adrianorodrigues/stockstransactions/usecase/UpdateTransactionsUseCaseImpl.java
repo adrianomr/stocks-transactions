@@ -18,6 +18,9 @@ public class UpdateTransactionsUseCaseImpl implements UpdateTransactionsUseCase 
     @Autowired
     TransactionRepository repository;
 
+    @Autowired
+    UpdatePortfolioUseCase updatePortfolioUseCase;
+
     @Override
     public void execute(Long userId, List<Transaction> transactions) {
         log.info("user: {} transactions: {}", userId, transactions);
@@ -29,7 +32,10 @@ public class UpdateTransactionsUseCaseImpl implements UpdateTransactionsUseCase 
 
         List<Transaction> newTransactions = userTransactions.findNewTransactions(transactions);
 
+        updatePortfolioUseCase.execute(userId, transactions);
+
         repository.saveAll(TransactionDtoAdapter.INSTANCE.convert(newTransactions));
+
     }
 
 }

@@ -2,10 +2,12 @@ package br.com.adrianorodrigues.stockstransactions.entrypoint.consumer;
 
 import br.com.adrianorodrigues.stockstransactions.external.repository.TransactionRepository;
 import br.com.adrianorodrigues.stockstransactions.external.repository.dto.TransactionDto;
+import io.awspring.cloud.messaging.core.QueueMessagingTemplate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -20,6 +22,8 @@ class TransactionConsumerTest {
     TransactionConsumer transactionConsumer;
     @Autowired
     TransactionRepository repository;
+    @MockBean
+    QueueMessagingTemplate queueMessagingTemplate;
 
     @BeforeEach
     void setUp() {
