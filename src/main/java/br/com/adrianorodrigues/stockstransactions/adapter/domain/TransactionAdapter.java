@@ -3,6 +3,7 @@ package br.com.adrianorodrigues.stockstransactions.adapter.domain;
 import br.com.adrianorodrigues.stockstransactions.domain.Transaction;
 import br.com.adrianorodrigues.stockstransactions.entrypoint.consumer.CeiTransactionDto;
 import br.com.adrianorodrigues.stockstransactions.entrypoint.consumer.CeiUserTransactionsDto;
+import br.com.adrianorodrigues.stockstransactions.enums.TransactionOrigin;
 import br.com.adrianorodrigues.stockstransactions.enums.TransactionType;
 import br.com.adrianorodrigues.stockstransactions.external.repository.dto.TransactionDto;
 import lombok.experimental.UtilityClass;
@@ -32,6 +33,7 @@ public class TransactionAdapter {
                 .price(new BigDecimal(transaction.getUnitPrice()))
                 .type(TransactionType.valueOf(transaction.getAction().toUpperCase()))
                 .userId(userId)
+                .origin(TransactionOrigin.CEI_B3)
                 .build();
     }
 

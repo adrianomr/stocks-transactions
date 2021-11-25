@@ -17,7 +17,7 @@ public class TransactionConsumer {
     ObjectMapper objectMapper;
 
     @Autowired
-    UpdateTransactionsUseCase updatePortfolio;
+    UpdateTransactionsUseCase updateTransactions;
 
     @JmsListener(destination = "${entrypoint.consumer.ceiIntegration.name}")
     public void process(String message) {
@@ -25,7 +25,7 @@ public class TransactionConsumer {
         try {
             CeiUserTransactionsDto userTransactions = objectMapper
                     .readValue(message, CeiUserTransactionsDto.class);
-            updatePortfolio.execute(userTransactions.getId(), TransactionAdapter
+            updateTransactions.execute(userTransactions.getId(), TransactionAdapter
                     .fromCeiUserTransactionDto(userTransactions));
         } catch (JsonProcessingException e) {
             log.error("Error processing update-transactions.fifo queue", e);

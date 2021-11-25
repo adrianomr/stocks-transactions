@@ -1,5 +1,6 @@
 package br.com.adrianorodrigues.stockstransactions.external.repository.dto;
 
+import br.com.adrianorodrigues.stockstransactions.enums.TransactionOrigin;
 import br.com.adrianorodrigues.stockstransactions.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,5 +37,8 @@ public class TransactionDto {
     private Integer sequence;
     @Column(nullable = false)
     private Long userId;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TransactionOrigin origin;
 
 }
