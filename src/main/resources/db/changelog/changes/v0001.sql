@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS transaction (
 	CONSTRAINT transaction_pkey PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE public.hibernate_sequence
+CREATE SEQUENCE IF NOT EXISTS public.hibernate_sequence
 	INCREMENT BY 1
 	MINVALUE 1
 	MAXVALUE 9223372036854775807
