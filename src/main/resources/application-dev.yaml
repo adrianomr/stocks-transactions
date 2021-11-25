@@ -12,12 +12,12 @@ amazon:
 entrypoint:
   consumer:
     ceiIntegration:
-      name: cei-integration.fifo
+      name: cei-integration-dev.fifo
 
 external:
   queue:
     updatePortfolio:
-      name: update-portfolio.fifo
+      name: update-portfolio-dev.fifo
 
 server:
   tomcat:

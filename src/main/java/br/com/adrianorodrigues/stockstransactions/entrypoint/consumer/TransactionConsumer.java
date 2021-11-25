@@ -19,7 +19,7 @@ public class TransactionConsumer {
     @Autowired
     UpdateTransactionsUseCase updatePortfolio;
 
-    @JmsListener(destination = "cei-integration.fifo")
+    @JmsListener(destination = "${entrypoint.consumer.ceiIntegration.name}")
     public void process(String message) {
         log.info(message);
         try {
