@@ -3,7 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/stocks-transactions
     username: postgres
     password: postgres
-  jpa.hibernate.ddl-auto: none
+  jpa.hibernate.ddl-auto: validate
 
 amazon:
   accessKey: ${AMAZON_ACCESS_KEY}
