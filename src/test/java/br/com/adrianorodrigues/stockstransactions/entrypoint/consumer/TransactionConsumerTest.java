@@ -1,5 +1,6 @@
 package br.com.adrianorodrigues.stockstransactions.entrypoint.consumer;
 
+import br.com.adrianorodrigues.stockstransactions.enums.TransactionOrigin;
 import br.com.adrianorodrigues.stockstransactions.external.repository.TransactionRepository;
 import br.com.adrianorodrigues.stockstransactions.external.repository.dto.TransactionDto;
 import io.awspring.cloud.messaging.core.QueueMessagingTemplate;
@@ -66,4 +67,16 @@ class TransactionConsumerTest {
 
         assertEquals(3, transactions.size());
     }
+
+    @Test
+    void whenTransactionInsertedShouldAddCEI_B3AsTransactionOrigin() {
+        String message = "{ \"id\": 1, \"transactions\": [{\"operation_date\": \"2020-06-22\", \"action\": \"buy\", \"market_type\": \"unit\", \"raw_negotiation_code\": \"HGRE11\", \"asset_specification\": \"FII HG REAL CI\", \"unit_amount\": 1, \"unit_price\": \"149.95\", \"total_price\": \"149.95\", \"quotation_factor\": 1}]}";
+
+        transactionConsumer.process(message);
+
+        List<TransactionDto> transactions = repository.findAll();
+
+        assertEquals(TransactionOrigin.CEI_B3, transactions.get(0).getOrigin());
+    }
+
 }
